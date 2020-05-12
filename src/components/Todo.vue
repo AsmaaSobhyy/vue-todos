@@ -1,9 +1,10 @@
 <template>
   <li class="d-flex align-items-center list-group-item">
+    <input type="checkbox" @click="$emit('on-toggle')">
     <button
       class="btn border-0 flex-grow-1 text-left shadow-none"
       :class="{ completed }"
-      @click="$emit('on-toggle')"
+      
       v-if="!isEditing"
     >
       <span>{{ description }}</span>

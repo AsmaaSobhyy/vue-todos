@@ -1,4 +1,10 @@
 # vue-todos
+## install the following packages
+```
+axis: yarn add axios
+```
+json server : npm install -g json-server
+```
 
 ## Project setup
 ```

@@ -29,6 +29,8 @@
 <script>
 import Todo from "./Todo.vue";
 import CreateTodo from "./CreateTodo.vue";
+import axios from "axios"
+
 
 export default {
   props: {
@@ -36,27 +38,39 @@ export default {
   },
   data() {
     return {
-      todos: [
-        { description: "Do the dishes", completed: false },
-        { description: "Take out the trash", completed: false },
-        { description: "Finish doing laundry", completed: false }
-      ]
+      todos: []
     };
   },
   methods: {
     addTodo(newTodo) {
-      this.todos.push({ description: newTodo, completed: false });
+      axios.post("http://localhost:3000/TodoList",{ description: newTodo, completed: false })
+    .then(res=>this.todos.push({ id:res.data.id,description: res.data.description, completed: false }))
+    .catch(err => console.log(err));
+      
     },
     toggleTodo(todo) {
       todo.completed = !todo.completed;
     },
     deleteTodo(deletedTodo) {
-      this.todos = this.todos.filter(todo => todo !== deletedTodo);
+    axios.delete('http://localhost:3000/TodoList/'+ deletedTodo.id)
+    .then(this.todos = this.todos.filter(todo => todo !== deletedTodo))
+    .catch(err => console.log(err));
+      
     },
     editTodo(todo, newTodoDescription) {
-      todo.description = newTodoDescription;
-    }
+      console.log(todo.id)
+    axios.put('http://localhost:3000/TodoList/'+ todo.id,{ description: newTodoDescription, completed: todo.completed })
+    .then(todo.description = newTodoDescription)
+    .catch(err => console.log(err));
+      
+    },
+    
   },
+  created(){
+      axios.get('http://localhost:3000/TodoList/')
+    .then(res => this.todos = res.data)
+    .catch(err => console.log(err));
+    },
   components: { Todo, CreateTodo }
 };
 </script>
