@@ -14,8 +14,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-      <router-link class="mx-2" to="/">Todos</router-link> |
-      <router-link class="mx-2"  to="doneTodos">Done todos</router-link>
+        <button class="btn todos">
+
+        <router-link class="mx-2" to="/">Todos</router-link> |
+        </button>
+        <button class ="btn donetodo">
+
+        <router-link class="mx-2" to="doneTodos">Done todos</router-link>
+        </button>
       </div>
     </div>
   </nav>

@@ -1,7 +1,10 @@
 # vue-todos
 ## install the following packages
 - axis: yarn add axios<br/>
-- json server : npm install -g json-server
+- json server : npm install -g json-server<br>
+- npm install @vue/cli-plugin-unit-jest -D <br>
+- vue add @vue/unit-jest <br>
+- npm install flush-promises -D <br>
 
 
 ## Project setup
@@ -28,7 +31,7 @@ yarn lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### To run
-
 - yarn serve : run on local host http://localhost:8080/<br/>
-- json-server --watch db.json
+- json-server --watch db.json<br>
+- npm run test:unit<br>
 

@@ -29,8 +29,7 @@
 <script>
 import Todo from "./Todo.vue";
 import CreateTodo from "./CreateTodo.vue";
-import axios from "axios"
-
+import axios from "axios";
 
 export default {
   props: {
@@ -42,40 +41,59 @@ export default {
     };
   },
   methods: {
+    gettodos(){
+      axios
+      .get("http://localhost:3000/TodoList/")
+      .then(
+        res => (this.todos = res.data.filter(todo => todo.completed !== true))
+      )
+      .catch(err => console.log(err));
+    },
     addTodo(newTodo) {
-      axios.post("http://localhost:3000/TodoList",{ description: newTodo, completed: false })
-    .then(res=>this.todos.push({ id:res.data.id,description: res.data.description, completed: false }))
-    .catch(err => console.log(err));
-      
+      axios
+        .post("http://localhost:3000/TodoList", {
+          description: newTodo,
+          completed: false
+        })
+        .then(res =>
+          this.todos.push({
+            id: res.data.id,
+            description: res.data.description,
+            completed: false
+          })
+        )
+        .catch(err => console.log(err));
     },
     toggleTodo(todo) {
       todo.completed = !todo.completed;
-      axios.put('http://localhost:3000/TodoList/'+ todo.id,{ description: todo.description, completed: todo.completed })
-    .then(this.todos = this.todos.filter(todo => todo.completed !== true))
-    .catch(err => console.log(err));
-      
-      
+      axios
+        .put("http://localhost:3000/TodoList/" + todo.id, {
+          description: todo.description,
+          completed: todo.completed
+        })
+        .then((this.todos = this.todos.filter(todo => todo.completed !== true)))
+        .catch(err => console.log(err));
     },
     deleteTodo(deletedTodo) {
-    axios.delete('http://localhost:3000/TodoList/'+ deletedTodo.id)
-    .then(this.todos = this.todos.filter(todo => todo !== deletedTodo))
-    .catch(err => console.log(err));
-      
+      axios
+        .delete("http://localhost:3000/TodoList/" + deletedTodo.id)
+        .then((this.todos = this.todos.filter(todo => todo !== deletedTodo)))
+        .catch(err => console.log(err));
     },
     editTodo(todo, newTodoDescription) {
       // console.log(todo.id)
-    axios.put('http://localhost:3000/TodoList/'+ todo.id,{ description: newTodoDescription, completed: todo.completed })
-    .then(todo.description = newTodoDescription)
-    .catch(err => console.log(err));
-      
-    },
-    
+      axios
+        .put("http://localhost:3000/TodoList/" + todo.id, {
+          description: newTodoDescription,
+          completed: todo.completed
+        })
+        .then((todo.description = newTodoDescription))
+        .catch(err => console.log(err));
+    }
   },
-  created(){
-      axios.get('http://localhost:3000/TodoList/')
-    .then(res => this.todos = res.data.filter(todo => todo.completed !== true))
-    .catch(err => console.log(err));
-    },
+  created() {
+    this.gettodos();
+  },
   components: { Todo, CreateTodo }
 };
 </script>

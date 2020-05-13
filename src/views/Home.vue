@@ -1,7 +1,7 @@
 <template>
-<div>
-  <todo-list list-name="My to-dos" />
-</div>
+  <div>
+    <todo-list list-name="My to-dos" />
+  </div>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
   name: "App",
   components: {
     TodoList
-  },
+  }
 };
 </script>
 
