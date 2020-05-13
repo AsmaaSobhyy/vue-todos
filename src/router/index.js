@@ -15,7 +15,6 @@ const routes = [
     path: "/doneTodos",
     name: "doneTodos",
     component: DoneTodos
-    
   }
 ];
 
