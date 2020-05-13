@@ -11,14 +11,24 @@
       "completed": false
     },
     {
-      "id": 2,
       "description": "Finish doing laundry",
-      "completed": false
+      "completed": false,
+      "id": 2
     },
     {
       "description": "hello there",
-      "completed": false,
+      "completed": true,
       "id": 3
+    },
+    {
+      "description": "completed todo",
+      "completed": true,
+      "id": 4
+    },
+    {
+      "description": "test todo edited",
+      "completed": false,
+      "id": 5
     }
   ]
 }

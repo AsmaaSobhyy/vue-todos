@@ -50,6 +50,11 @@ export default {
     },
     toggleTodo(todo) {
       todo.completed = !todo.completed;
+      axios.put('http://localhost:3000/TodoList/'+ todo.id,{ description: todo.description, completed: todo.completed })
+    .then(this.todos = this.todos.filter(todo => todo.completed !== true))
+    .catch(err => console.log(err));
+      
+      
     },
     deleteTodo(deletedTodo) {
     axios.delete('http://localhost:3000/TodoList/'+ deletedTodo.id)
@@ -58,7 +63,7 @@ export default {
       
     },
     editTodo(todo, newTodoDescription) {
-      console.log(todo.id)
+      // console.log(todo.id)
     axios.put('http://localhost:3000/TodoList/'+ todo.id,{ description: newTodoDescription, completed: todo.completed })
     .then(todo.description = newTodoDescription)
     .catch(err => console.log(err));
@@ -68,7 +73,7 @@ export default {
   },
   created(){
       axios.get('http://localhost:3000/TodoList/')
-    .then(res => this.todos = res.data)
+    .then(res => this.todos = res.data.filter(todo => todo.completed !== true))
     .catch(err => console.log(err));
     },
   components: { Todo, CreateTodo }

@@ -28,3 +28,10 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### To run
+```
+- yarn serve : run on local host http://localhost:8080/
+```
+- json-server --watch db.json
+```
