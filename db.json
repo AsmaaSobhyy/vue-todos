@@ -27,7 +27,7 @@
     },
     {
       "description": "test todo edited",
-      "completed": false,
+      "completed": true,
       "id": 5
     }
   ]

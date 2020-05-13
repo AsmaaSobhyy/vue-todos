@@ -41,6 +41,14 @@ export default {
     };
   },
   methods: {
+    gettodos(){
+      axios
+      .get("http://localhost:3000/TodoList/")
+      .then(
+        res => (this.todos = res.data.filter(todo => todo.completed !== true))
+      )
+      .catch(err => console.log(err));
+    },
     addTodo(newTodo) {
       axios
         .post("http://localhost:3000/TodoList", {
@@ -84,12 +92,7 @@ export default {
     }
   },
   created() {
-    axios
-      .get("http://localhost:3000/TodoList/")
-      .then(
-        res => (this.todos = res.data.filter(todo => todo.completed !== true))
-      )
-      .catch(err => console.log(err));
+    this.gettodos();
   },
   components: { Todo, CreateTodo }
 };
